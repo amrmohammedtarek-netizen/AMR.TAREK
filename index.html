@@ -63,8 +63,9 @@
             font-weight: 600;
             font-size: 1.1rem;
             transition: color 0.2s;
+            cursor: pointer;
         }
-        nav a:hover {
+        nav a:hover, nav a.active {
             color: var(--accent-blue);
         }
         .container {
@@ -78,6 +79,10 @@
             padding: 3rem;
             border: 1px solid var(--border-color);
             position: relative;
+            display: none;
+        }
+        .section.active {
+            display: block;
         }
         .section::before {
             content: '';
@@ -218,15 +223,15 @@
     </header>
 
     <nav>
-        <a href="#about">عن الكاتب</a>
-        <a href="#thoughts">خواطر</a>
-        <a href="#poetry">الشعر</a>
-        <a href="#sections">الأقسام</a>
-        <a href="#social">تابعني</a>
+        <a class="nav-link active" onclick="showSection('about')">عن الكاتب</a>
+        <a class="nav-link" onclick="showSection('thoughts')">خواطر</a>
+        <a class="nav-link" onclick="showSection('poetry')">الشعر</a>
+        <a class="nav-link" onclick="showSection('sections')">الأقسام</a>
+        <a class="nav-link" onclick="showSection('social')">تابعني</a>
     </nav>
 
     <div class="container">
-        <div id="about" class="section">
+        <div id="about" class="section active">
             <h2>عن الكاتب</h2>
             <div class="profile-card">
                 <img src="photo2.jpg" alt="عمرو طارق" class="profile-img">
@@ -258,7 +263,7 @@
                     صفحاته لسه جديد
                     لكنه مش أصلي
                     باهت من التقليد
-                    yاما قالوا الناس معادن
+                    ياما قالوا الناس معادن
                     ولا شوفتش الا حديد
                     ياما قالوا بكرا افرح
                     ياما قالوا بكرا العيد
@@ -295,9 +300,27 @@
         </div>
     </div>
 
+    <script>
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('.section');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            document.getElementById(sectionId).classList.add('active');
+            
+            event.currentTarget.classList.add('active');
+        }
+    </script>
+
     <footer>
         <p>جميع الحقوق محفوظة &copy; 2026 عمرو طارق</p>
     </footer>
 </body>
-                  </html>
-                  
+</html>
